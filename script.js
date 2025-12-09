@@ -41,75 +41,75 @@ downloadPDFBtn.addEventListener("click", async () => {
     const t = translations[currentLang];
 
     // Create a SIMPLE version of the CV for PDF
-    const pdfContainer = document.createElement('div');
-    pdfContainer.style.width = '1000px';
-    pdfContainer.style.backgroundColor = 'white';
-    pdfContainer.style.padding = '0';
+    const pdfContainer = document.createElement("div");
+    pdfContainer.style.width = "1000px";
+    pdfContainer.style.backgroundColor = "white";
+    pdfContainer.style.padding = "0";
     pdfContainer.style.fontFamily = "'Source Sans Pro', sans-serif";
 
     // ====== CREATE PDF-OPTIMIZED HEADER ======
-    const pdfHeader = document.createElement('div');
-    pdfHeader.style.backgroundColor = '#2c3e50';
-    pdfHeader.style.color = 'white';
-    pdfHeader.style.padding = '40px';
-    pdfHeader.style.marginBottom = '0';
+    const pdfHeader = document.createElement("div");
+    pdfHeader.style.backgroundColor = "#2c3e50";
+    pdfHeader.style.color = "white";
+    pdfHeader.style.padding = "40px";
+    pdfHeader.style.marginBottom = "0";
 
     // Name - simple white text
-    const pdfName = document.createElement('h1');
-    pdfName.textContent = 'John Mario Gonzalez Correa';
-    pdfName.style.color = 'white';
+    const pdfName = document.createElement("h1");
+    pdfName.textContent = "John Mario Gonzalez Correa";
+    pdfName.style.color = "white";
     pdfName.style.fontFamily = "'Poppins', sans-serif";
-    pdfName.style.fontSize = '2.5rem';
-    pdfName.style.fontWeight = '700';
-    pdfName.style.margin = '0 0 10px 0';
-    pdfName.style.padding = '0';
+    pdfName.style.fontSize = "2.5rem";
+    pdfName.style.fontWeight = "700";
+    pdfName.style.margin = "0 0 10px 0";
+    pdfName.style.padding = "0";
     pdfHeader.appendChild(pdfName);
 
     // Title
-    const pdfTitle = document.createElement('p');
+    const pdfTitle = document.createElement("p");
     pdfTitle.textContent = t.title;
-    pdfTitle.style.color = '#ecf0f1';
-    pdfTitle.style.fontSize = '1.2rem';
-    pdfTitle.style.margin = '0 0 30px 0';
-    pdfTitle.style.opacity = '0.9';
+    pdfTitle.style.color = "#ecf0f1";
+    pdfTitle.style.fontSize = "1.2rem";
+    pdfTitle.style.margin = "0 0 30px 0";
+    pdfTitle.style.opacity = "0.9";
     pdfHeader.appendChild(pdfTitle);
 
     // Contact info - simple layout
-    const contactGrid = document.createElement('div');
-    contactGrid.style.display = 'grid';
-    contactGrid.style.gridTemplateColumns = 'repeat(2, 1fr)';
-    contactGrid.style.gap = '15px';
-    contactGrid.style.marginBottom = '20px';
+    const contactGrid = document.createElement("div");
+    contactGrid.style.display = "grid";
+    contactGrid.style.gridTemplateColumns = "repeat(2, 1fr)";
+    contactGrid.style.gap = "15px";
+    contactGrid.style.marginBottom = "20px";
 
     // Phone
-    const phoneDiv = document.createElement('div');
-    phoneDiv.style.display = 'flex';
-    phoneDiv.style.alignItems = 'center';
-    phoneDiv.style.gap = '10px';
+    const phoneDiv = document.createElement("div");
+    phoneDiv.style.display = "flex";
+    phoneDiv.style.alignItems = "center";
+    phoneDiv.style.gap = "10px";
     phoneDiv.innerHTML = `<span style="color:#3498db;">📱</span> <span style="color:#ecf0f1;">+57 302 839 5051</span>`;
     contactGrid.appendChild(phoneDiv);
 
     // Email
-    const emailDiv = document.createElement('div');
-    emailDiv.style.display = 'flex';
-    emailDiv.style.alignItems = 'center';
-    emailDiv.style.gap = '10px';
+    const emailDiv = document.createElement("div");
+    emailDiv.style.display = "flex";
+    emailDiv.style.alignItems = "center";
+    emailDiv.style.gap = "10px";
     emailDiv.innerHTML = `<span style="color:#3498db;">✉️</span> <span style="color:#ecf0f1;">johnmgc.dev@gmail.com</span>`;
     contactGrid.appendChild(emailDiv);
 
     // Location
-    const locationDiv = document.createElement('div');
-    locationDiv.style.display = 'flex';
-    locationDiv.style.alignItems = 'center';
-    locationDiv.style.gap = '10px';
+    const locationDiv = document.createElement("div");
+    locationDiv.style.display = "flex";
+    locationDiv.style.alignItems = "center";
+    locationDiv.style.gap = "10px";
     locationDiv.innerHTML = `<span style="color:#3498db;">📍</span> <span style="color:#ecf0f1;">Colombia</span>`;
     contactGrid.appendChild(locationDiv);
 
     // Languages
-    const langDiv = document.createElement('div');
-    langDiv.style.display = 'flex';
-    langDiv.style.alignItems = 'center';
-    langDiv.style.gap = '10px';
+    const langDiv = document.createElement("div");
+    langDiv.style.display = "flex";
+    langDiv.style.alignItems = "center";
+    langDiv.style.gap = "10px";
     langDiv.innerHTML = `<span style="color:#3498db;">🌐</span> <span style="color:#ecf0f1;">${t.languageLevel}</span>`;
     contactGrid.appendChild(langDiv);
 
@@ -117,56 +117,60 @@ downloadPDFBtn.addEventListener("click", async () => {
     pdfContainer.appendChild(pdfHeader);
 
     // ====== COPY MAIN CONTENT (rest of CV) ======
-    const originalMain = document.querySelector('.main-content');
+    const originalMain = document.querySelector(".main-content");
     if (originalMain) {
       const mainClone = originalMain.cloneNode(true);
 
       // Remove any interactive elements from the clone
-      const interactiveElements = mainClone.querySelectorAll('button, a[href^="#"], .social-links');
-      interactiveElements.forEach(el => el.remove());
+      const interactiveElements = mainClone.querySelectorAll(
+        'button, a[href^="#"], .social-links',
+      );
+      interactiveElements.forEach((el) => el.remove());
 
       // Apply simple styles for PDF
-      mainClone.style.padding = '40px';
-      mainClone.style.backgroundColor = 'white';
-      mainClone.style.color = '#333333';
+      mainClone.style.padding = "40px";
+      mainClone.style.backgroundColor = "white";
+      mainClone.style.color = "#333333";
 
       // Ensure good contrast
-      const allTextElements = mainClone.querySelectorAll('h1, h2, h3, h4, h5, h6, p, li, span, div');
-      allTextElements.forEach(el => {
-        if (el.style.color === '' || el.style.color === 'transparent') {
-          el.style.color = '#333333';
+      const allTextElements = mainClone.querySelectorAll(
+        "h1, h2, h3, h4, h5, h6, p, li, span, div",
+      );
+      allTextElements.forEach((el) => {
+        if (el.style.color === "" || el.style.color === "transparent") {
+          el.style.color = "#333333";
         }
       });
 
       // Fix section titles
-      const sectionTitles = mainClone.querySelectorAll('.section-title');
-      sectionTitles.forEach(title => {
-        title.style.color = '#2c3e50';
+      const sectionTitles = mainClone.querySelectorAll(".section-title");
+      sectionTitles.forEach((title) => {
+        title.style.color = "#2c3e50";
       });
 
       // Fix company names
-      const companies = mainClone.querySelectorAll('.company');
-      companies.forEach(company => {
-        company.style.color = '#2c3e50';
+      const companies = mainClone.querySelectorAll(".company");
+      companies.forEach((company) => {
+        company.style.color = "#2c3e50";
       });
 
       // Fix position titles
-      const positions = mainClone.querySelectorAll('.position');
-      positions.forEach(position => {
-        position.style.color = '#3498db';
+      const positions = mainClone.querySelectorAll(".position");
+      positions.forEach((position) => {
+        position.style.color = "#3498db";
       });
 
       pdfContainer.appendChild(mainClone);
     }
 
     // ====== CREATE TEMPORARY CONTAINER FOR CAPTURE ======
-    const tempContainer = document.createElement('div');
-    tempContainer.style.position = 'fixed';
-    tempContainer.style.left = '-9999px';
-    tempContainer.style.top = '0';
-    tempContainer.style.width = '1000px';
-    tempContainer.style.zIndex = '-9999';
-    tempContainer.style.backgroundColor = 'white';
+    const tempContainer = document.createElement("div");
+    tempContainer.style.position = "fixed";
+    tempContainer.style.left = "-9999px";
+    tempContainer.style.top = "0";
+    tempContainer.style.width = "1000px";
+    tempContainer.style.zIndex = "-9999";
+    tempContainer.style.backgroundColor = "white";
     tempContainer.appendChild(pdfContainer);
     document.body.appendChild(tempContainer);
 
@@ -175,19 +179,19 @@ downloadPDFBtn.addEventListener("click", async () => {
       scale: 2,
       useCORS: true,
       logging: false,
-      backgroundColor: '#ffffff',
-      windowWidth: 1000
+      backgroundColor: "#ffffff",
+      windowWidth: 1000,
     });
 
     // ====== CLEAN UP ======
     document.body.removeChild(tempContainer);
 
     // ====== CREATE PDF ======
-    const imgData = canvas.toDataURL('image/png');
+    const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF({
-      orientation: 'portrait',
-      unit: 'mm',
-      format: 'a4',
+      orientation: "portrait",
+      unit: "mm",
+      format: "a4",
     });
 
     const imgWidth = 210; // A4 width in mm
@@ -197,29 +201,29 @@ downloadPDFBtn.addEventListener("click", async () => {
     let heightLeft = imgHeight;
     let position = 0;
 
-    pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
     heightLeft -= pageHeight;
 
     // Add additional pages if needed
     while (heightLeft >= 0) {
       position = heightLeft - imgHeight;
       pdf.addPage();
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
     }
 
     // Save the PDF with language suffix
-    const langSuffix = currentLang === 'es' ? '_ES' : '_EN';
+    const langSuffix = currentLang === "es" ? "_ES" : "_EN";
     pdf.save(`John_Mario_Gonzalez_Correa_CV${langSuffix}.pdf`);
 
     // Reset button state
     downloadPDFBtn.innerHTML =
       '<i class="fas fa-file-pdf"></i> Download as PDF';
     downloadPDFBtn.disabled = false;
-    modal.style.display = 'none';
+    modal.style.display = "none";
   } catch (error) {
-    console.error('Error generating PDF:', error);
-    alert('Error generating PDF. Please try again or use the print option.');
+    console.error("Error generating PDF:", error);
+    alert("Error generating PDF. Please try again or use the print option.");
     downloadPDFBtn.innerHTML =
       '<i class="fas fa-file-pdf"></i> Download as PDF';
     downloadPDFBtn.disabled = false;
@@ -278,8 +282,11 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       // Add a small delay based on element type for staggered effect
-      const delay = entry.target.classList.contains('section') ? 0.1 :
-                   entry.target.classList.contains('experience-item') ? 0.2 : 0.3;
+      const delay = entry.target.classList.contains("section")
+        ? 0.1
+        : entry.target.classList.contains("experience-item")
+          ? 0.2
+          : 0.3;
 
       setTimeout(() => {
         entry.target.classList.add("animate-in");
@@ -358,23 +365,29 @@ document.head.appendChild(style);
 // Initialize animations on page load
 window.addEventListener("load", () => {
   // Animate header elements
-  document.querySelectorAll('.header-content > *').forEach((el, index) => {
+  document.querySelectorAll(".header-content > *").forEach((el, index) => {
     setTimeout(() => {
-      el.style.animationPlayState = 'running';
+      el.style.animationPlayState = "running";
     }, index * 100);
   });
 
   // Initial animation for visible elements
-  const initialObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("animate-in");
-        initialObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.05 });
+  const initialObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-in");
+          initialObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.05 },
+  );
 
-  document.querySelectorAll(".section, .experience-item, .project-card, .skill-category")
+  document
+    .querySelectorAll(
+      ".section, .experience-item, .project-card, .skill-category",
+    )
     .forEach((el) => initialObserver.observe(el));
 });
 
@@ -389,7 +402,7 @@ const translations = {
 
     // Sections
     professionalSummary: "Professional Summary",
-    professionalSummaryText: `Software development engineer with over 3 years of experience in backend development, specializing in data operations and platform engineering. Skilled in designing, optimizing, and monitoring data pipelines in AWS using services such as Glue, EMR, RDS, Lambda, and S3. Strong expertise in infrastructure automation with Terraform and GitHub Actions, system monitoring with CloudWatch and New Relic, and relational database management in PostgreSQL, Aurora, and MySQL. Focused on building scalable, secure, and high-performance solutions within CI/CD environments and microservice-oriented architectures.`,
+    professionalSummaryText: `Software development engineer with over 5 years of experience in backend development, specializing in data operations and platform engineering. Skilled in designing, optimizing, and monitoring data pipelines in AWS using services such as Glue, EMR, RDS, Lambda, and S3. Strong expertise in infrastructure automation with Terraform and GitHub Actions, system monitoring with CloudWatch and New Relic, and relational database management in PostgreSQL, Aurora, and MySQL. Focused on building scalable, secure, and high-performance solutions within CI/CD environments and microservice-oriented architectures.`,
 
     professionalExperience: "Professional Experience",
     technologies: "Technologies:",
@@ -404,15 +417,15 @@ const translations = {
       "Automated CI/CD workflows using GitHub Actions.",
       "Developed APIs and services using GraphQL/gRPC in a microservices architecture.",
       "Containerized services using Docker.",
-      "Optimized dashboard performance through data modeling and caching strategies."
+      "Optimized dashboard performance through data modeling and caching strategies.",
     ],
 
     cobelenPosition: "Full Stack Developer",
     cobelenDate: "Sep 2022 – Nov 2022",
     cobelenResponsibilities: [
-      "Led the migration and production deployment of the \"Apolo\" ERP system.",
+      'Led the migration and production deployment of the "Apolo" ERP system.',
       "Integrated payment methods and external web services.",
-      "Managed databases and developed functional business reports."
+      "Managed databases and developed functional business reports.",
     ],
 
     dtechnologiesPosition: "Full Stack Developer",
@@ -420,7 +433,7 @@ const translations = {
     dtechnologiesResponsibilities: [
       "Developed REST and GraphQL microservices and APIs.",
       "Integrated distributed systems and financial platforms.",
-      "Designed and consumed APIs for financial applications."
+      "Designed and consumed APIs for financial applications.",
     ],
 
     // Education
@@ -431,7 +444,7 @@ const translations = {
       "SAP SD Training – Selecta, 2021",
       "Ruby on Rails 7 Bootcamp – Código Facilito, 2022",
       "GitHub Actions Bootcamp – Código Facilito, 2025",
-      "\"From Earth to Cloud\" Bootcamp – Women Who Code, 2023"
+      '"From Earth to Cloud" Bootcamp – Women Who Code, 2023',
     ],
 
     // Skills
@@ -446,18 +459,22 @@ const translations = {
     // Projects
     highlightedProjects: "Highlighted Projects",
     forensicProject: "Forensic Data Auditing",
-    forensicDescription: "Implemented audit mechanisms to identify access and manipulation of sensitive databases.",
+    forensicDescription:
+      "Implemented audit mechanisms to identify access and manipulation of sensitive databases.",
     syncProject: "Cross-Account AWS Synchronization",
-    syncDescription: "Migrated and synchronized data between buckets using AWS Sync and Glacier.",
+    syncDescription:
+      "Migrated and synchronized data between buckets using AWS Sync and Glacier.",
     observabilityProject: "Data Observability",
-    observabilityDescription: "Proactively monitored pipelines and databases using CloudWatch and New Relic.",
+    observabilityDescription:
+      "Proactively monitored pipelines and databases using CloudWatch and New Relic.",
     cicdProject: "CI/CD Pipeline Automation",
-    cicdDescription: "Automated infrastructure and service deployments using GitHub Actions and Terraform.",
+    cicdDescription:
+      "Automated infrastructure and service deployments using GitHub Actions and Terraform.",
 
     // Footer
     footerRights: "All rights reserved.",
     footerNote: "This CV is also available as a LaTeX document.",
-    contact: "Contact"
+    contact: "Contact",
   },
 
   es: {
@@ -484,15 +501,15 @@ const translations = {
       "Automaticé flujos de trabajo CI/CD usando GitHub Actions.",
       "Desarrollé APIs y servicios usando GraphQL/gRPC en una arquitectura de microservicios.",
       "Containericé servicios usando Docker.",
-      "Optimicé el rendimiento de dashboards mediante modelado de datos y estrategias de caché."
+      "Optimicé el rendimiento de dashboards mediante modelado de datos y estrategias de caché.",
     ],
 
     cobelenPosition: "Desarrollador Full Stack",
     cobelenDate: "Sep 2022 – Nov 2022",
     cobelenResponsibilities: [
-      "Lideré la migración y despliegue en producción del sistema ERP \"Apolo\".",
+      'Lideré la migración y despliegue en producción del sistema ERP "Apolo".',
       "Integré métodos de pago y servicios web externos.",
-      "Gestioné bases de datos y desarrollé reportes empresariales funcionales."
+      "Gestioné bases de datos y desarrollé reportes empresariales funcionales.",
     ],
 
     dtechnologiesPosition: "Desarrollador Full Stack",
@@ -500,7 +517,7 @@ const translations = {
     dtechnologiesResponsibilities: [
       "Desarrollé microservicios y APIs REST y GraphQL.",
       "Integré sistemas distribuidos y plataformas financieras.",
-      "Diseñé y consumí APIs para aplicaciones financieras."
+      "Diseñé y consumí APIs para aplicaciones financieras.",
     ],
 
     // Education
@@ -511,7 +528,7 @@ const translations = {
       "Capacitación SAP SD – Selecta, 2021",
       "Bootcamp Ruby on Rails 7 – Código Facilito, 2022",
       "Bootcamp GitHub Actions – Código Facilito, 2025",
-      "Bootcamp \"De la Tierra a la Nube\" – Women Who Code, 2023"
+      'Bootcamp "De la Tierra a la Nube" – Women Who Code, 2023',
     ],
 
     // Skills
@@ -526,22 +543,26 @@ const translations = {
     // Projects
     highlightedProjects: "Proyectos Destacados",
     forensicProject: "Auditoría Forense de Datos",
-    forensicDescription: "Implementé mecanismos de auditoría para identificar acceso y manipulación de bases de datos sensibles.",
+    forensicDescription:
+      "Implementé mecanismos de auditoría para identificar acceso y manipulación de bases de datos sensibles.",
     syncProject: "Sincronización AWS entre Cuentas",
-    syncDescription: "Migré y sincronicé datos entre buckets usando AWS Sync y Glacier.",
+    syncDescription:
+      "Migré y sincronicé datos entre buckets usando AWS Sync y Glacier.",
     observabilityProject: "Observabilidad de Datos",
-    observabilityDescription: "Monitoreé proactivamente pipelines y bases de datos usando CloudWatch y New Relic.",
+    observabilityDescription:
+      "Monitoreé proactivamente pipelines y bases de datos usando CloudWatch y New Relic.",
     cicdProject: "Automatización de Pipeline CI/CD",
-    cicdDescription: "Automaticé despliegues de infraestructura y servicios usando GitHub Actions y Terraform.",
+    cicdDescription:
+      "Automaticé despliegues de infraestructura y servicios usando GitHub Actions y Terraform.",
 
     // Footer
     footerRights: "Todos los derechos reservados.",
     footerNote: "Este CV también está disponible como documento LaTeX.",
-    contact: "Contacto"
-  }
+    contact: "Contacto",
+  },
 };
 
-let currentLang = 'en';
+let currentLang = "en";
 
 // Function to update all text elements
 function updateLanguage(lang) {
@@ -549,20 +570,23 @@ function updateLanguage(lang) {
   const t = translations[lang];
 
   // Update header
-  const titleElement = document.querySelector('.title');
+  const titleElement = document.querySelector(".title");
   if (titleElement) titleElement.textContent = t.title;
 
-  const languageLevelElement = document.querySelector('.contact-item:nth-child(4) span');
+  const languageLevelElement = document.querySelector(
+    ".contact-item:nth-child(4) span",
+  );
   if (languageLevelElement) languageLevelElement.textContent = t.languageLevel;
 
-  const downloadBtn = document.querySelector('#downloadBtn');
-  if (downloadBtn) downloadBtn.innerHTML = `<i class="fas fa-download"></i> ${t.downloadBtn}`;
+  const downloadBtn = document.querySelector("#downloadBtn");
+  if (downloadBtn)
+    downloadBtn.innerHTML = `<i class="fas fa-download"></i> ${t.downloadBtn}`;
 
-  const languageToggle = document.querySelector('#languageToggle');
+  const languageToggle = document.querySelector("#languageToggle");
   if (languageToggle) {
     languageToggle.title = t.languageTitle;
     // Update button text to ES/EN
-    languageToggle.textContent = lang === 'en' ? 'ES' : 'EN';
+    languageToggle.textContent = lang === "en" ? "ES" : "EN";
   }
 
   // Update page title
@@ -570,12 +594,12 @@ function updateLanguage(lang) {
   document.title = `${name} - ${t.title}`;
 
   // Update sections - use more specific selectors
-  const sectionTitles = document.querySelectorAll('.section-title');
+  const sectionTitles = document.querySelectorAll(".section-title");
   if (sectionTitles.length >= 1) {
     sectionTitles[0].innerHTML = `<i class="fas fa-user-tie section-icon"></i> ${t.professionalSummary}`;
   }
 
-  const summaryText = document.querySelector('.section:nth-of-type(1) p');
+  const summaryText = document.querySelector(".section:nth-of-type(1) p");
   if (summaryText) summaryText.textContent = t.professionalSummaryText;
 
   if (sectionTitles.length >= 2) {
@@ -583,18 +607,20 @@ function updateLanguage(lang) {
   }
 
   // Update experience items
-  const experienceItems = document.querySelectorAll('.experience-item');
+  const experienceItems = document.querySelectorAll(".experience-item");
 
   if (experienceItems.length >= 1) {
-    const position1 = experienceItems[0].querySelector('.position');
-    const date1 = experienceItems[0].querySelector('.date');
-    const tech1 = experienceItems[0].querySelector('.tech-stack strong');
+    const position1 = experienceItems[0].querySelector(".position");
+    const date1 = experienceItems[0].querySelector(".date");
+    const tech1 = experienceItems[0].querySelector(".tech-stack strong");
 
     if (position1) position1.textContent = t.abatechPosition;
     if (date1) date1.textContent = t.abatechDate;
     if (tech1) tech1.textContent = t.technologies;
 
-    const abatechList = experienceItems[0].querySelectorAll('.responsibilities li');
+    const abatechList = experienceItems[0].querySelectorAll(
+      ".responsibilities li",
+    );
     t.abatechResponsibilities.forEach((item, index) => {
       if (abatechList[index]) {
         abatechList[index].textContent = item;
@@ -603,15 +629,17 @@ function updateLanguage(lang) {
   }
 
   if (experienceItems.length >= 2) {
-    const position2 = experienceItems[1].querySelector('.position');
-    const date2 = experienceItems[1].querySelector('.date');
-    const tech2 = experienceItems[1].querySelector('.tech-stack strong');
+    const position2 = experienceItems[1].querySelector(".position");
+    const date2 = experienceItems[1].querySelector(".date");
+    const tech2 = experienceItems[1].querySelector(".tech-stack strong");
 
     if (position2) position2.textContent = t.cobelenPosition;
     if (date2) date2.textContent = t.cobelenDate;
     if (tech2) tech2.textContent = t.technologies;
 
-    const cobelenList = experienceItems[1].querySelectorAll('.responsibilities li');
+    const cobelenList = experienceItems[1].querySelectorAll(
+      ".responsibilities li",
+    );
     t.cobelenResponsibilities.forEach((item, index) => {
       if (cobelenList[index]) {
         cobelenList[index].textContent = item;
@@ -620,15 +648,17 @@ function updateLanguage(lang) {
   }
 
   if (experienceItems.length >= 3) {
-    const position3 = experienceItems[2].querySelector('.position');
-    const date3 = experienceItems[2].querySelector('.date');
-    const tech3 = experienceItems[2].querySelector('.tech-stack strong');
+    const position3 = experienceItems[2].querySelector(".position");
+    const date3 = experienceItems[2].querySelector(".date");
+    const tech3 = experienceItems[2].querySelector(".tech-stack strong");
 
     if (position3) position3.textContent = t.dtechnologiesPosition;
     if (date3) date3.textContent = t.dtechnologiesDate;
     if (tech3) tech3.textContent = t.technologies;
 
-    const dtechList = experienceItems[2].querySelectorAll('.responsibilities li');
+    const dtechList = experienceItems[2].querySelectorAll(
+      ".responsibilities li",
+    );
     t.dtechnologiesResponsibilities.forEach((item, index) => {
       if (dtechList[index]) {
         dtechList[index].textContent = item;
@@ -641,13 +671,14 @@ function updateLanguage(lang) {
     sectionTitles[2].innerHTML = `<i class="fas fa-graduation-cap section-icon"></i> ${t.education}`;
   }
 
-  const educationItems = document.querySelectorAll('.education-list li');
+  const educationItems = document.querySelectorAll(".education-list li");
   t.educationItems.forEach((item, index) => {
     if (educationItems[index]) {
       // Preserve the strong tag structure
-      const parts = item.split(' – ');
+      const parts = item.split(" – ");
       if (parts.length > 1) {
-        educationItems[index].innerHTML = `<strong>${parts[0]}</strong> – ${parts.slice(1).join(' – ')}`;
+        educationItems[index].innerHTML =
+          `<strong>${parts[0]}</strong> – ${parts.slice(1).join(" – ")}`;
       } else {
         educationItems[index].innerHTML = `<strong>${item}</strong>`;
       }
@@ -659,7 +690,7 @@ function updateLanguage(lang) {
     sectionTitles[3].innerHTML = `<i class="fas fa-certificate section-icon"></i> ${t.certificationsSkills}`;
   }
 
-  const skillCategories = document.querySelectorAll('.skill-category h3');
+  const skillCategories = document.querySelectorAll(".skill-category h3");
   if (skillCategories.length >= 6) {
     skillCategories[0].innerHTML = `<i class="fas fa-code"></i> ${t.programmingLanguages}`;
     skillCategories[1].innerHTML = `<i class="fas fa-layer-group"></i> ${t.frameworks}`;
@@ -674,54 +705,55 @@ function updateLanguage(lang) {
     sectionTitles[4].innerHTML = `<i class="fas fa-star section-icon"></i> ${t.highlightedProjects}`;
   }
 
-  const projectCards = document.querySelectorAll('.project-card');
+  const projectCards = document.querySelectorAll(".project-card");
   if (projectCards.length >= 4) {
-    const title1 = projectCards[0].querySelector('h3');
-    const desc1 = projectCards[0].querySelector('p');
+    const title1 = projectCards[0].querySelector("h3");
+    const desc1 = projectCards[0].querySelector("p");
     if (title1) title1.textContent = t.forensicProject;
     if (desc1) desc1.textContent = t.forensicDescription;
 
-    const title2 = projectCards[1].querySelector('h3');
-    const desc2 = projectCards[1].querySelector('p');
+    const title2 = projectCards[1].querySelector("h3");
+    const desc2 = projectCards[1].querySelector("p");
     if (title2) title2.textContent = t.syncProject;
     if (desc2) desc2.textContent = t.syncDescription;
 
-    const title3 = projectCards[2].querySelector('h3');
-    const desc3 = projectCards[2].querySelector('p');
+    const title3 = projectCards[2].querySelector("h3");
+    const desc3 = projectCards[2].querySelector("p");
     if (title3) title3.textContent = t.observabilityProject;
     if (desc3) desc3.textContent = t.observabilityDescription;
 
-    const title4 = projectCards[3].querySelector('h3');
-    const desc4 = projectCards[3].querySelector('p');
+    const title4 = projectCards[3].querySelector("h3");
+    const desc4 = projectCards[3].querySelector("p");
     if (title4) title4.textContent = t.cicdProject;
     if (desc4) desc4.textContent = t.cicdDescription;
   }
 
   // Update footer
-  const footerNote = document.querySelector('.footer-note');
+  const footerNote = document.querySelector(".footer-note");
   if (footerNote) footerNote.textContent = t.footerNote;
 
-  const footerLink = document.querySelector('.footer-links a');
-  if (footerLink) footerLink.innerHTML = `<i class="fas fa-envelope"></i> ${t.contact}`;
+  const footerLink = document.querySelector(".footer-links a");
+  if (footerLink)
+    footerLink.innerHTML = `<i class="fas fa-envelope"></i> ${t.contact}`;
 
   // Update HTML lang attribute
   document.documentElement.lang = lang;
 
   // Save preference to localStorage
-  localStorage.setItem('cv-language', lang);
+  localStorage.setItem("cv-language", lang);
 }
 
 // Language toggle button
-const languageToggle = document.getElementById('languageToggle');
+const languageToggle = document.getElementById("languageToggle");
 if (languageToggle) {
-  languageToggle.addEventListener('click', () => {
-    const newLang = currentLang === 'en' ? 'es' : 'en';
+  languageToggle.addEventListener("click", () => {
+    const newLang = currentLang === "en" ? "es" : "en";
     updateLanguage(newLang);
   });
 }
 
 // Load saved language preference
-const savedLang = localStorage.getItem('cv-language');
-if (savedLang && (savedLang === 'en' || savedLang === 'es')) {
+const savedLang = localStorage.getItem("cv-language");
+if (savedLang && (savedLang === "en" || savedLang === "es")) {
   updateLanguage(savedLang);
 }

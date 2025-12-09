@@ -97,7 +97,7 @@ const translations = {
 
     // Sections
     professionalSummary: "Resumen Profesional",
-    professionalSummaryText: `Ingeniero de desarrollo de software con más de 3 años de experiencia en desarrollo backend, especializado en operaciones de datos e ingeniería de plataformas. Habilidades en diseño, optimización y monitoreo de pipelines de datos en AWS utilizando servicios como Glue, EMR, RDS, Lambda y S3. Gran experiencia en automatización de infraestructura con Terraform y GitHub Actions, monitoreo de sistemas con CloudWatch y New Relic, y gestión de bases de datos relacionales en PostgreSQL, Aurora y MySQL. Enfocado en construir soluciones escalables, seguras y de alto rendimiento en entornos CI/CD y arquitecturas orientadas a microservicios.`,
+    professionalSummaryText: `Ingeniero de desarrollo de software con más de 5 años de experiencia en desarrollo backend, especializado en operaciones de datos e ingeniería de plataformas. Habilidades en diseño, optimización y monitoreo de pipelines de datos en AWS utilizando servicios como Glue, EMR, RDS, Lambda y S3. Gran experiencia en automatización de infraestructura con Terraform y GitHub Actions, monitoreo de sistemas con CloudWatch y New Relic, y gestión de bases de datos relacionales en PostgreSQL, Aurora y MySQL. Enfocado en construir soluciones escalables, seguras y de alto rendimiento en entornos CI/CD y arquitecturas orientadas a microservicios.`,
 
     professionalExperience: "Experiencia Profesional",
     technologies: "Tecnologías:",
@@ -178,11 +178,11 @@ let currentLang = "en";
 // Función para actualizar todos los elementos de texto
 function updateLanguage(lang) {
   try {
-    console.log('Actualizando idioma a:', lang);
+    console.log("Actualizando idioma a:", lang);
 
     // Validar idioma
     if (!translations[lang]) {
-      console.error('Idioma inválido:', lang, 'usando "en" por defecto');
+      console.error("Idioma inválido:", lang, 'usando "en" por defecto');
       lang = "en";
     }
 
@@ -196,7 +196,8 @@ function updateLanguage(lang) {
     const languageLevelElement = document.querySelector(
       ".contact-item:nth-child(4) span",
     );
-    if (languageLevelElement) languageLevelElement.textContent = t.languageLevel;
+    if (languageLevelElement)
+      languageLevelElement.textContent = t.languageLevel;
 
     const downloadBtn = document.querySelector("#downloadBtn");
     if (downloadBtn)
@@ -362,12 +363,12 @@ function updateLanguage(lang) {
     // Guardar preferencia en localStorage
     try {
       localStorage.setItem("cv-language", lang);
-      console.log('Idioma guardado en localStorage:', lang);
+      console.log("Idioma guardado en localStorage:", lang);
     } catch (error) {
-      console.error('Error guardando idioma en localStorage:', error);
+      console.error("Error guardando idioma en localStorage:", error);
     }
   } catch (error) {
-    console.error('Error en función updateLanguage:', error);
+    console.error("Error en función updateLanguage:", error);
     // Intentar recuperar estableciendo idioma por defecto
     if (lang !== "en") {
       console.log('Intentando recuperar estableciendo idioma a "en"');
@@ -380,55 +381,55 @@ function updateLanguage(lang) {
 // INICIALIZACIÓN CUANDO EL DOM ESTÁ LISTO
 // ============================================
 
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM completamente cargado - Inicializando CV...');
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOM completamente cargado - Inicializando CV...");
 
   // 1. Configurar año actual en el footer
   const currentYearElement = document.getElementById("currentYear");
   if (currentYearElement) {
     currentYearElement.textContent = new Date().getFullYear();
-    console.log('Año actual configurado en footer');
+    console.log("Año actual configurado en footer");
   }
 
   // 2. Configurar sistema de idiomas
-  console.log('Configurando sistema de idiomas...');
+  console.log("Configurando sistema de idiomas...");
 
   // Botón de cambio de idioma
   const languageToggle = document.getElementById("languageToggle");
   if (languageToggle) {
-    console.log('Botón de idioma encontrado, agregando event listener...');
+    console.log("Botón de idioma encontrado, agregando event listener...");
 
-    languageToggle.addEventListener("click", function() {
-      console.log('Botón de idioma clickeado, currentLang:', currentLang);
+    languageToggle.addEventListener("click", function () {
+      console.log("Botón de idioma clickeado, currentLang:", currentLang);
       const newLang = currentLang === "en" ? "es" : "en";
-      console.log('Cambiando idioma a:', newLang);
+      console.log("Cambiando idioma a:", newLang);
       updateLanguage(newLang);
     });
 
-    console.log('Event listener de idioma agregado exitosamente');
+    console.log("Event listener de idioma agregado exitosamente");
   } else {
-    console.error('ERROR: Botón de idioma NO encontrado en el DOM!');
+    console.error("ERROR: Botón de idioma NO encontrado en el DOM!");
   }
 
   // Cargar idioma guardado
   try {
     const savedLang = localStorage.getItem("cv-language");
-    console.log('Idioma guardado en localStorage:', savedLang);
+    console.log("Idioma guardado en localStorage:", savedLang);
 
     if (savedLang && (savedLang === "en" || savedLang === "es")) {
       updateLanguage(savedLang);
-      console.log('Idioma restaurado a:', savedLang);
+      console.log("Idioma restaurado a:", savedLang);
     } else {
-      console.log('No hay idioma válido guardado, usando por defecto: en');
+      console.log("No hay idioma válido guardado, usando por defecto: en");
       updateLanguage("en");
     }
   } catch (error) {
-    console.error('Error cargando preferencia de idioma:', error);
+    console.error("Error cargando preferencia de idioma:", error);
     updateLanguage("en");
   }
 
   // 3. Configurar funcionalidad de PDF
-  console.log('Configurando funcionalidad de PDF...');
+  console.log("Configurando funcionalidad de PDF...");
 
   const downloadBtn = document.getElementById("downloadBtn");
   const modal = document.getElementById("pdfModal");
@@ -437,39 +438,39 @@ document.addEventListener('DOMContentLoaded', function() {
   const printCVBtn = document.getElementById("printCV");
   const exportHTMLBtn = document.getElementById("exportHTML");
 
-  console.log('Elementos de PDF encontrados:', {
+  console.log("Elementos de PDF encontrados:", {
     downloadBtn: !!downloadBtn,
     modal: !!modal,
     closeModal: !!closeModal,
     downloadPDFBtn: !!downloadPDFBtn,
     printCVBtn: !!printCVBtn,
-    exportHTMLBtn: !!exportHTMLBtn
+    exportHTMLBtn: !!exportHTMLBtn,
   });
 
   // Abrir modal cuando se hace clic en el botón de descarga
   if (downloadBtn && modal) {
-    downloadBtn.addEventListener("click", function() {
-      console.log('Botón de descarga clickeado, abriendo modal');
+    downloadBtn.addEventListener("click", function () {
+      console.log("Botón de descarga clickeado, abriendo modal");
       modal.style.display = "block";
     });
-    console.log('Event listener de botón de descarga agregado');
+    console.log("Event listener de botón de descarga agregado");
   } else {
-    console.error('ERROR: Botón de descarga o modal NO encontrados!');
+    console.error("ERROR: Botón de descarga o modal NO encontrados!");
   }
 
   // Cerrar modal cuando se hace clic en la X
   if (closeModal && modal) {
-    closeModal.addEventListener("click", function() {
-      console.log('Cerrar modal clickeado');
+    closeModal.addEventListener("click", function () {
+      console.log("Cerrar modal clickeado");
       modal.style.display = "none";
     });
   }
 
   // Cerrar modal cuando se hace clic fuera
   if (modal) {
-    window.addEventListener("click", function(e) {
+    window.addEventListener("click", function (e) {
       if (e.target === modal) {
-        console.log('Clic fuera del modal, cerrando');
+        console.log("Clic fuera del modal, cerrando");
         modal.style.display = "none";
       }
     });
@@ -477,21 +478,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Generar y descargar PDF
   if (downloadPDFBtn) {
-    downloadPDFBtn.addEventListener("click", async function() {
-      console.log('Generando PDF...');
+    downloadPDFBtn.addEventListener("click", async function () {
+      console.log("Generando PDF...");
 
       try {
         // Mostrar estado de carga
-        downloadPDFBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando PDF...';
+        downloadPDFBtn.innerHTML =
+          '<i class="fas fa-spinner fa-spin"></i> Generando PDF...';
         downloadPDFBtn.disabled = true;
 
         // Verificar si las librerías requeridas están cargadas
         if (!window.jspdf) {
-          throw new Error('Librería jsPDF no cargada. Por favor verifica tu conexión a internet.');
+          throw new Error(
+            "Librería jsPDF no cargada. Por favor verifica tu conexión a internet.",
+          );
         }
 
         if (!window.html2canvas) {
-          throw new Error('Librería html2canvas no cargada. Por favor verifica tu conexión a internet.');
+          throw new Error(
+            "Librería html2canvas no cargada. Por favor verifica tu conexión a internet.",
+          );
         }
 
         const { jsPDF } = window.jspdf;
@@ -608,7 +614,8 @@ document.addEventListener('DOMContentLoaded', function() {
           });
 
           // Arreglar colores de experiencia
-          const experienceItems = mainClone.querySelectorAll(".experience-item");
+          const experienceItems =
+            mainClone.querySelectorAll(".experience-item");
           experienceItems.forEach((item) => {
             item.style.borderLeftColor = "#3498db";
           });
@@ -631,7 +638,7 @@ document.addEventListener('DOMContentLoaded', function() {
         tempContainer.appendChild(pdfContainer);
         document.body.appendChild(tempContainer);
 
-        console.log('Capturando HTML con html2canvas...');
+        console.log("Capturando HTML con html2canvas...");
         const canvas = await html2canvas(pdfContainer, {
           scale: 2,
           useCORS: true,
@@ -673,30 +680,33 @@ document.addEventListener('DOMContentLoaded', function() {
         const fileName = `John_Mario_Gonzalez_Correa_CV_${currentLang.toUpperCase()}.pdf`;
         pdf.save(fileName);
 
-        console.log('PDF generado exitosamente:', fileName);
+        console.log("PDF generado exitosamente:", fileName);
 
         // Restaurar botón
-        downloadPDFBtn.innerHTML = '<i class="fas fa-file-pdf"></i> Descargar como PDF';
+        downloadPDFBtn.innerHTML =
+          '<i class="fas fa-file-pdf"></i> Descargar como PDF';
         downloadPDFBtn.disabled = false;
         modal.style.display = "none";
-
       } catch (error) {
         console.error("Error generando PDF:", error);
-        alert("Error generando PDF. Por favor intenta de nuevo o usa la opción de imprimir.");
+        alert(
+          "Error generando PDF. Por favor intenta de nuevo o usa la opción de imprimir.",
+        );
 
         // Restaurar botón
-        downloadPDFBtn.innerHTML = '<i class="fas fa-file-pdf"></i> Descargar como PDF';
+        downloadPDFBtn.innerHTML =
+          '<i class="fas fa-file-pdf"></i> Descargar como PDF';
         downloadPDFBtn.disabled = false;
       }
     });
 
-    console.log('Event listener de generación de PDF agregado');
+    console.log("Event listener de generación de PDF agregado");
   }
 
   // Imprimir CV
   if (printCVBtn) {
-    printCVBtn.addEventListener("click", function() {
-      console.log('Imprimiendo CV...');
+    printCVBtn.addEventListener("click", function () {
+      console.log("Imprimiendo CV...");
       modal.style.display = "none";
       setTimeout(() => {
         window.print();
@@ -706,8 +716,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Exportar como HTML
   if (exportHTMLBtn) {
-    exportHTMLBtn.addEventListener("click", function() {
-      console.log('Exportando como HTML...');
+    exportHTMLBtn.addEventListener("click", function () {
+      console.log("Exportando como HTML...");
       const content = document.documentElement.outerHTML;
       const blob = new Blob([content], { type: "text/html" });
       const url = URL.createObjectURL(blob);
@@ -742,7 +752,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // 5. Animaciones de scroll y transiciones
-  console.log('Configurando animaciones...');
+  console.log("Configurando animaciones...");
 
   // Agregar CSS mejorado para animaciones
   const style = document.createElement("style");
@@ -790,7 +800,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   `;
   document.head.appendChild(style);
-  console.log('Estilos de animación agregados');
+  console.log("Estilos de animación agregados");
 
   // Configurar IntersectionObserver para animaciones al hacer scroll
   const observerOptions = {
@@ -803,14 +813,18 @@ document.addEventListener('DOMContentLoaded', function() {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("animate-in");
-        console.log('Elemento animado:', entry.target.className);
+        console.log("Elemento animado:", entry.target.className);
       }
     });
   }, observerOptions);
 
   // Observar elementos para animación
-  const elementsToAnimate = document.querySelectorAll(".section, .experience-item, .project-card, .skill-category");
-  console.log(`Observando ${elementsToAnimate.length} elementos para animación`);
+  const elementsToAnimate = document.querySelectorAll(
+    ".section, .experience-item, .project-card, .skill-category",
+  );
+  console.log(
+    `Observando ${elementsToAnimate.length} elementos para animación`,
+  );
 
   elementsToAnimate.forEach((el) => {
     observer.observe(el);
@@ -823,13 +837,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Inicializar animaciones al cargar la página
   window.addEventListener("load", () => {
-    console.log('Página completamente cargada, iniciando animaciones...');
+    console.log("Página completamente cargada, iniciando animaciones...");
 
     // Animar elementos del header
     document.querySelectorAll(".header-content > *").forEach((el, index) => {
       setTimeout(() => {
         el.style.animationPlayState = "running";
-        console.log(`Animando elemento del header: ${el.className || el.tagName}`);
+        console.log(
+          `Animando elemento del header: ${el.className || el.tagName}`,
+        );
       }, index * 100);
     });
 
@@ -840,22 +856,26 @@ document.addEventListener('DOMContentLoaded', function() {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate-in");
             initialObserver.unobserve(entry.target);
-            console.log('Animación inicial para:', entry.target.className);
+            console.log("Animación inicial para:", entry.target.className);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     // Observar elementos inicialmente visibles
-    document.querySelectorAll(".section, .experience-item, .project-card, .skill-category").forEach((el) => {
-      initialObserver.observe(el);
-    });
+    document
+      .querySelectorAll(
+        ".section, .experience-item, .project-card, .skill-category",
+      )
+      .forEach((el) => {
+        initialObserver.observe(el);
+      });
 
-    console.log('Animaciones iniciales configuradas');
+    console.log("Animaciones iniciales configuradas");
   });
 
-  console.log('Sistema de animaciones configurado exitosamente!');
+  console.log("Sistema de animaciones configurado exitosamente!");
 });
 
 // ============================================
@@ -863,7 +883,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // ============================================
 
 // Algunos elementos pueden necesitar inicialización inmediata
-console.log('Script CV cargado - esperando DOM...');
+console.log("Script CV cargado - esperando DOM...");
 
 // Función de ayuda para verificar si un elemento existe
 function elementExists(selector) {

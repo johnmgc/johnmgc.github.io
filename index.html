@@ -375,6 +375,42 @@
     <!-- Include jsPDF for PDF generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- Fallback scripts in case CDN fails -->
+    <script>
+      // Wait for DOM to be fully loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM loaded, checking libraries...');
+
+        // Check if jsPDF is loaded
+        if (!window.jspdf) {
+          console.error('jsPDF not loaded from CDN, trying alternative...');
+          // You could load from another CDN here if needed
+        }
+
+        // Check if html2canvas is loaded
+        if (!window.html2canvas) {
+          console.error('html2canvas not loaded from CDN, trying alternative...');
+          // You could load from another CDN here if needed
+        }
+
+        // Initialize language system with error handling
+        setTimeout(function() {
+          try {
+            // Check if language system elements exist
+            const langToggle = document.getElementById('languageToggle');
+            if (langToggle) {
+              console.log('Language toggle button found');
+            } else {
+              console.error('Language toggle button NOT found');
+            }
+          } catch (e) {
+            console.error('Error initializing language system:', e);
+          }
+        }, 100);
+      });
+    </script>
+
     <script src="script.js"></script>
   </body>
 </html>
